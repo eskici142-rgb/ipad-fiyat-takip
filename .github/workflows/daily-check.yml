@@ -2,7 +2,7 @@ name: iPad Fiyat Kontrolü
 
 on:
   schedule:
-    - cron: '0 7 * * *'   # Türkiye saati 10:00
+    - cron: '0 7 * * *'
   workflow_dispatch:
 
 jobs:
@@ -11,17 +11,14 @@ jobs:
     steps:
     - name: Kodu indir
       uses: actions/checkout@v4
-
     - name: Python kur
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-
     - name: Playwright kur
       run: |
         pip install playwright
         playwright install --with-deps chromium
-
     - name: Script'i çalıştır
       env:
         GMAIL_USER: ${{ secrets.GMAIL_USER }}
